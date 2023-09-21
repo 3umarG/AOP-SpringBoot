@@ -34,5 +34,7 @@ public class DemoApplication implements CommandLineRunner {
 
 		var result = service.publishComment(comment);
 		LOGGER.info("The actual result of method : "+result);
+
+		service.deleteComment(comment);
 	}
 }

@@ -21,7 +21,7 @@ public class LoggingAspect {
     // * = any class within the path
     // .* = any method in the class
     // (..) = any parameter list with any type
-    @Around(value = "execution(* com.aop.demo.services..*.*(..))")
+    @Around(value = "execution(String com.aop.demo.services..*.*(..))")
     public Object log(ProceedingJoinPoint joinPoint) throws Throwable {
 
         String methodName = joinPoint.getSignature().getName();
@@ -37,5 +37,12 @@ public class LoggingAspect {
         LOGGER.error("Finished Logging from Aspect with updated result : "+result);
 
         return "FAILED";
+    }
+
+    @Around(value = "@annotation(com.aop.demo.annotations.ToLog)")
+    public void logWithAnnotation(ProceedingJoinPoint joinPoint) throws Throwable {
+        LOGGER.error("Logging method with annotation");
+        joinPoint.proceed();
+        LOGGER.error("Finished Logging method");
     }
 }
