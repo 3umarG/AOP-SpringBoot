@@ -20,10 +20,10 @@ public class LoggingAspect {
     // methods that match :
     // * = any return type
     // com.aop.demo.services.. = any sub-package inside this path
-    // * = any class within the path
+    // impl.CommentsServiceImpl = any class within the path
     // .* = any method in the class
     // (..) = any parameter list with any type
-    @Around(value = "execution(String com.aop.demo.services..*.*(..))")
+    @Around(value = "execution(String com.aop.demo.services.impl.CommentsServiceImpl.*.*(..))")
     public Object log(ProceedingJoinPoint joinPoint) throws Throwable {
 
         String methodName = joinPoint.getSignature().getName();
