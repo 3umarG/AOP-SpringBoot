@@ -3,6 +3,7 @@ package com.aop.demo;
 import com.aop.demo.entities.Comment;
 import com.aop.demo.services.CommentsService;
 import com.aop.demo.services.impl.CommentsServiceImpl;
+import lombok.extern.java.Log;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,12 @@ public class DemoApplication implements CommandLineRunner {
 		var result = service.publishComment(comment);
 		LOGGER.info("The actual result of method : "+result);
 
+		LOGGER.info("********************************");
+
 		service.deleteComment(comment);
+
+		LOGGER.info("********************************");
+
+		service.updateComment(comment);
 	}
 }

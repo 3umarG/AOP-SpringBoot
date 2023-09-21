@@ -1,7 +1,9 @@
 package com.aop.demo.aspects;
 
 import com.aop.demo.entities.Comment;
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.slf4j.Logger;
@@ -44,5 +46,14 @@ public class LoggingAspect {
         LOGGER.error("Logging method with annotation");
         joinPoint.proceed();
         LOGGER.error("Finished Logging method");
+    }
+
+    @AfterReturning(
+            value = "@annotation(com.aop.demo.annotations.ToLogAfterReturning)",
+            returning = "returnedObject"
+    )
+    public void logAfterReturning(JoinPoint joinPoint, Object returnedObject){
+        var methodName = joinPoint.getSignature().getName();
+        LOGGER.error("Method : "+methodName + " finished and returned : "+returnedObject);
     }
 }

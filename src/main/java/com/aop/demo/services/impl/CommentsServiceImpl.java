@@ -1,6 +1,7 @@
 package com.aop.demo.services.impl;
 
 import com.aop.demo.annotations.ToLog;
+import com.aop.demo.annotations.ToLogAfterReturning;
 import com.aop.demo.entities.Comment;
 import com.aop.demo.services.CommentsService;
 import org.slf4j.Logger;
@@ -26,8 +27,11 @@ public class CommentsServiceImpl implements CommentsService {
         LOGGER.info("Delete Comment : "+comment.content());
     }
 
+    @ToLogAfterReturning
     @Override
-    public void updateComment(Comment comment) {
+    public Comment updateComment(Comment comment) {
         LOGGER.info("Update Comment : "+comment.content());
+        comment = new Comment("Updated Comment" , "the same author");
+        return comment;
     }
 }
