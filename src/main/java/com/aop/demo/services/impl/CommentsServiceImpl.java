@@ -13,7 +13,9 @@ public class CommentsServiceImpl implements CommentsService {
             LoggerFactory.getLogger(CommentsServiceImpl.class);
 
     @Override
-    public void publishComment(Comment comment) {
+    public String publishComment(Comment comment) {
         LOGGER.info("Publishing comment '" + comment.content() + "' inside the target method.");
+
+        return "SUCCESS";
     }
 }

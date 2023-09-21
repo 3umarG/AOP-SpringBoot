@@ -32,7 +32,7 @@ public class DemoApplication implements CommandLineRunner {
 
 		var comment = new Comment("Comment 1 content","Author 1");
 
-		service.publishComment(comment);
-
+		var result = service.publishComment(comment);
+		LOGGER.info("The actual result of method : "+result);
 	}
 }
